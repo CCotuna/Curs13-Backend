@@ -29,4 +29,29 @@ router.delete("/", (req, res) => {
   res.send("Deleted");
 });
 
+router.put("/", (req, res) => {
+  const { taskId, value } = req.body;
+  // console.log(req);
+  const taskIndex = tasks.findIndex((task) => task.id === taskId);
+  console.log("TASKS BEFORE", tasks[taskIndex].name);
+  tasks[taskIndex].name = value;
+
+  console.log("AFTER", tasks);
+
+  res.send("Edited");
+});
+
+router.put("/favorite", (req, res) => {
+  const { taskId } = req.body;
+  // console.log(req);
+  const taskIndex = tasks.findIndex((task) => task.id === taskId);
+  tasks[taskIndex].favorite = !tasks[taskIndex].favorite;
+  if (tasks[taskIndex].favorite) {
+    console.log("e bifat");
+  } else {
+    console.log("nu e");
+  }
+  res.send("Edited");
+});
+
 export default router;
