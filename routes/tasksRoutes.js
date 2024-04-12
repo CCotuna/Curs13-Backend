@@ -21,9 +21,10 @@ router.post("/", (req, res) => {
 
 router.delete("/", (req, res) => {
   // const taskId = req.body.taskId;
-  const { taskId } = req.data;
+  const { taskId } = req.body;
   console.log("taskID", taskId);
-  tasks.splice(taskId, 1);
+  const taskIndex = tasks.findIndex((task) => task.id === taskId);
+  tasks.splice(taskIndex, 1);
   console.log("TASKURI MODIFICATE:", tasks);
   res.send("Deleted");
 });
