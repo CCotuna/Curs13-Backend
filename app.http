@@ -1,0 +1,31 @@
+@mainUrl = http://localhost:3000
+###
+#
+GET {{mainUrl}}/tasks
+###
+#
+GET {{mainUrl}}/tasks
+###
+#
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+    "name": "Mario",
+    "age": "21"
+}
+###
+#
+DELETE {{mainUrl}}/product/red-pen
+###
+#
+GET {{mainUrl}}/product/blue-pen
+###
+#
+DELETE {{mainUrl}}/ruta
+###
+#
+PUT {{mainUrl}}/ruta
+###
+#
+PATCH {{mainUrl}}/ruta
