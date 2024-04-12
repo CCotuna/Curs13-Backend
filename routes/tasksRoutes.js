@@ -19,4 +19,13 @@ router.post("/", (req, res) => {
   res.send("OK");
 });
 
+router.delete("/", (req, res) => {
+  // const taskId = req.body.taskId;
+  const { taskId } = req.data;
+  console.log("taskID", taskId);
+  tasks.splice(taskId, 1);
+  console.log("TASKURI MODIFICATE:", tasks);
+  res.send("Deleted");
+});
+
 export default router;
