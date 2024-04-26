@@ -3,7 +3,7 @@ services:
     build: .docker
     stdin_open: true
     tty: true
-    container_name: app.Curs13Backend
+    container_name: app.backend
     environment:
       NODE_ENV: development
       CHOKIDAR_USEPOLLING: true
@@ -18,3 +18,18 @@ services:
       - /app/.git/
     working_dir: /app
     user: 1000:1000
+
+  mysql:
+    image: mysql:8.0.27
+    container_name: mysql.task
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: task
+      MYSQL_USER: task
+      MYSQL_PASSWORD: task
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+    driver: local
