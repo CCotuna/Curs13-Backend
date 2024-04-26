@@ -22,6 +22,8 @@ services:
   mysql:
     image: mysql:8.0.27
     container_name: mysql.task
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: task
@@ -29,7 +31,18 @@ services:
       MYSQL_PASSWORD: task
     volumes:
       - mysql_data:/var/lib/mysql
-    
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.0
+    container_name: pma.task
+    ports:
+      - "4577:80"
+    environment:
+      PMA_HOST: localhost
+      PMA_USER: task
+      PMA_PASSWORD: task
+      UPLOAD_LIMIT: 250M
+
 volumes:
   mysql_data:
     driver: local
