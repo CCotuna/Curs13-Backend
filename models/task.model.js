@@ -29,6 +29,6 @@ export const Task = sequelize.define(
   {
     sequelize,
     freezeTableName: true,
-    paranoid: true,
+    paranoid: false,
   }
 );

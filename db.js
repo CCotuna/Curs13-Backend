@@ -4,6 +4,7 @@ const db = {
   NAME: "task",
   USERNAME: "task",
   PASSWORD: "task",
+
   options: {
     dialect: "mysql",
     timezone: "+00:00",
