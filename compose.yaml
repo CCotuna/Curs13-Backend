@@ -38,7 +38,7 @@ services:
     ports:
       - "4577:80"
     environment:
-      PMA_HOST: localhost
+      PMA_HOST: mysql.task
       PMA_USER: task
       PMA_PASSWORD: task
       UPLOAD_LIMIT: 250M
