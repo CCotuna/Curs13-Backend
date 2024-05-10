@@ -29,10 +29,10 @@ router.post("/", async (req, res) => {
 router.delete("/", async (req, res) => {
   // const taskId = req.body.taskId;
   const { taskId } = req.body;
-
+  console.log(taskId, "aici e taskidul ");
   await Task.destroy({
     where: {
-      customId: taskId,
+      id: taskId,
     },
   });
 
