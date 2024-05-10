@@ -29,10 +29,9 @@ router.post("/", async (req, res) => {
 router.delete("/", async (req, res) => {
   // const taskId = req.body.taskId;
   const { taskId } = req.body;
-  console.log(taskId, "aici e taskidul ");
   await Task.destroy({
     where: {
-      id: taskId,
+      customId: taskId,
     },
   });
 
@@ -43,21 +42,21 @@ router.delete("/", async (req, res) => {
   res.send("Deleted");
 });
 
-router.put("/", (req, res) => {
+router.put("/", async (req, res) => {
   const { taskId, value } = req.body;
-  // console.log(req);
   const taskIndex = tasks.findIndex((task) => task.id === taskId);
-  console.log("TASKS BEFORE", tasks[taskIndex].name);
+
+  const task = await Task.findById(taskId);
+  task.name = value;
+
+  await task.save();
+  // console.log(tasks, "lista de taskuri acum");
   tasks[taskIndex].name = value;
-
-  console.log("AFTER", tasks);
-
   res.send("Edited");
 });
 
 router.put("/favorite", (req, res) => {
   const { taskId } = req.body;
-  // console.log(req);
   const taskIndex = tasks.findIndex((task) => task.id === taskId);
   tasks[taskIndex].favorite = !tasks[taskIndex].favorite;
   if (tasks[taskIndex].favorite) {
