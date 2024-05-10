@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
 import productRoutes from "./routes/productRoutes.js";
 app.use("/product", productRoutes);
 
-import tasksRoutes from "./routes/tasksRoutes.js";
+import tasksRoutes from "./routes/task.routes.js";
 app.use("/tasks", tasksRoutes);
 
 // app.use(

@@ -4,13 +4,6 @@ import { DataTypes } from "sequelize";
 export const Task = sequelize.define(
   "Task",
   {
-    customId: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
