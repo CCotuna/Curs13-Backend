@@ -1,3 +1,6 @@
+import { sequelize } from "../db.js";
+
+import { Description } from "../models/description.model.js";
 import { Task } from "../models/task.model.js";
 
 export async function getAllTasks() {
@@ -6,18 +9,57 @@ export async function getAllTasks() {
   });
 }
 
-export async function createTask(name, favorite) {
+export async function createTask(name, favorite, description, author, ClientId) {
   // LOGICA => SERVICE + REPOSITORTY
-  const taskRow = await Task.create({ name, favorite });
-  return taskRow.dataValues.id;
+  const transaction = await sequelize.transaction();
+
+  try {
+    const taskRow = await Task.create({ name, favorite, ClientId }, { transaction });
+    await Description.create(
+      {
+        text: description,
+        author,
+        TaskId: taskRow.id,
+      },
+      { transaction }
+    );
+
+    await transaction.commit();
+
+    return taskRow.dataValues.id;
+  } catch (error) {
+    await transaction.rollback();
+  }
+
+  return "error";
 }
 
 export async function deleteOneTask(taskId) {
-  await Task.destroy({
-    where: {
-      id: taskId,
-    },
-  });
+  // const transaction = await sequelize.transaction();
+
+  // try {
+    // await Description.destroy(
+    //   {
+    //     where: {
+    //       TaskId: taskId,
+    //     },
+    //   },
+    //   { transaction }
+    // );
+
+    await Task.destroy(
+      {
+        where: {
+          id: taskId,
+        },
+      },
+      // { transaction }
+    );
+
+  //   transaction.commit();
+  // } catch (error) {
+  //   transaction.rollback();
+  // }
 }
 
 export async function editOneTask(taskId, value) {

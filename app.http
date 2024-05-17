@@ -7,16 +7,35 @@ GET {{mainUrl}}/tasks
 GET {{mainUrl}}/tasks
 ###
 #
+POST http://localhost:3000/client
+Content-Type: application/json
+
+{
+    "name": "First job to do",
+    "position": "CTO",
+    "priority": 3
+}
+
+###
+#
 POST http://localhost:3000/tasks
 Content-Type: application/json
 
 {
-    "name": "Mario",
-    "age": "21"
-}
+    "name": "First job to do",
+    "favorite": true,
+    "description": "Description of the job",
+    "author": "Mario",
+    "ClientId": 1
+ }
 ###
 #
-DELETE {{mainUrl}}/product/red-pen
+DELETE {{mainUrl}}/tasks 
+Content-Type: application/json
+
+{
+    "taskId": 33
+}
 ###
 #
 GET {{mainUrl}}/product/blue-pen

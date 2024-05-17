@@ -14,15 +14,19 @@ export async function getTasks(req, res) {
 
 export async function addNewTask(req, res) {
   // LUAREA DATELOR
-  const { name, favorite } = req.body;
+  const { name, favorite, description, author, ClientId } = req.body;
 
   // VERIFICARI
   if (!name) {
     throw new Error("Name is required");
   }
 
+  if (!ClientId) {
+    throw new Error("Client is required");
+  }
+
   // LOGICA => SERVICE + REPOSITORTY
-  const taskId = await createTask(name, favorite);
+  const taskId = await createTask(name, favorite, description, author, ClientId);
 
   // RASPUNS
   res.send(JSON.stringify({ id: taskId }));
