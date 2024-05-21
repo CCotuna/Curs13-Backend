@@ -1,6 +1,8 @@
 import { sequelize } from "../db.js";
 import { DataTypes } from "sequelize";
 
+import { Description } from "./description.model.js";
+
 export const Task = sequelize.define(
   "Task",
   {
@@ -25,3 +27,9 @@ export const Task = sequelize.define(
     paranoid: false,
   }
 );
+
+Task.hasOne(Description, { onDelete: "CASCADE" });
+Description.belongsTo(Task);
+
+// Description.hasOne(Task);
+// Task.belongsTo(Description);
