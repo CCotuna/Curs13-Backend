@@ -3,12 +3,12 @@ import { WebSocketServer } from "ws";
 const wss = new WebSocketServer({ port: 8080 });
 
 wss.on("connection", (ws) => {
-  console.log("Client connected", ws);
+  console.log("Client connected");
 
   ws.on("message", function message(data) {
     console.log("received: %s", data);
 
-    ws.send(data);
+    ws.send(data.toString());
   });
 
   //   const interval = setInterval(() => {
