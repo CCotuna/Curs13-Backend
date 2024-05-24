@@ -2,13 +2,21 @@ import { WebSocketServer } from "ws";
 
 const wss = new WebSocketServer({ port: 8080 });
 
+const clients = [];
+
 wss.on("connection", (ws) => {
   console.log("Client connected");
+
+  clients.push(ws);
 
   ws.on("message", function message(data) {
     console.log("received: %s", data);
 
-    ws.send(data.toString())
+    clients.forEach((wsClient)=> {
+        if (ws !== wsClient)
+            wsClient.send(data.toString())
+    })
+
   });
 
 //   const interval = setInterval(() => {
