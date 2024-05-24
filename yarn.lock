@@ -55,6 +55,7 @@ __metadata:
     express: "npm:^4.19.2"
     mysql2: "npm:^3.9.7"
     sequelize: "npm:^6.37.3"
+    ws: "npm:^8.17.0"
   languageName: unknown
   linkType: soft
 
@@ -906,6 +907,21 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: b8975e33f9431380eb82707ec39689767f967a8ce362eea5303399618896c983a2dec3ad72fd7273bdf126181c760067519130434344891300ebd54f5d5cbf4a
+  languageName: node
+  linkType: hard
+
+"ws@npm:^8.17.0":
+  version: 8.17.0
+  resolution: "ws@npm:8.17.0"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ">=5.0.2"
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 5e1dcb0ae70c6e2f158f5b446e0a72a2cd335b07aba73ee1872e9bae1285382286a10e53ed479db21bdd690a5dfd05641a768611ebb236253c62fefa43ef58b4
   languageName: node
   linkType: hard
 
