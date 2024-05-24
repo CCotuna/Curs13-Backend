@@ -17,11 +17,12 @@ wss.on("connection", (ws) => {
             wsClient.send(data.toString())
     })
 
+    ws.send(data.toString());S
   });
 
-//   const interval = setInterval(() => {
-//     ws.send("hello world");
-//   }, 1000);
+  //   const interval = setInterval(() => {
+  //     ws.send("hello world");
+  //   }, 1000);
 
   ws.on("close", () => {
     console.log("Client disconnected");
