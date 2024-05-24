@@ -6,7 +6,7 @@ import {
   addNewTask,
   deleteTask,
   editTask,
-  editTaskFavorite
+  editTaskFavorite,
 } from "../controllers/task.controller.js";
 
 const router = Router();

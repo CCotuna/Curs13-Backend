@@ -3,7 +3,7 @@ import {
   getAllTasks,
   deleteOneTask,
   editOneTask,
-  editOneTaskFavorite
+  editOneTaskFavorite,
 } from "../services/task.services.js";
 
 export async function getTasks(req, res) {
@@ -26,7 +26,13 @@ export async function addNewTask(req, res) {
   }
 
   // LOGICA => SERVICE + REPOSITORTY
-  const taskId = await createTask(name, favorite, description, author, ClientId);
+  const taskId = await createTask(
+    name,
+    favorite,
+    description,
+    author,
+    ClientId
+  );
 
   // RASPUNS
   res.send(JSON.stringify({ id: taskId }));
@@ -48,7 +54,7 @@ export async function deleteTask(req, res) {
 export async function editTask(req, res) {
   const { taskId, value } = req.body;
 
-  await editOneTask(taskId, value)
+  await editOneTask(taskId, value);
 
   res.send("Edited");
 }

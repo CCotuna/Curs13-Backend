@@ -9,12 +9,21 @@ export async function getAllTasks() {
   });
 }
 
-export async function createTask(name, favorite, description, author, ClientId) {
+export async function createTask(
+  name,
+  favorite,
+  description,
+  author,
+  ClientId
+) {
   // LOGICA => SERVICE + REPOSITORTY
   const transaction = await sequelize.transaction();
 
   try {
-    const taskRow = await Task.create({ name, favorite, ClientId }, { transaction });
+    const taskRow = await Task.create(
+      { name, favorite, ClientId },
+      { transaction }
+    );
     await Description.create(
       {
         text: description,
@@ -38,23 +47,23 @@ export async function deleteOneTask(taskId) {
   // const transaction = await sequelize.transaction();
 
   // try {
-    // await Description.destroy(
-    //   {
-    //     where: {
-    //       TaskId: taskId,
-    //     },
-    //   },
-    //   { transaction }
-    // );
+  // await Description.destroy(
+  //   {
+  //     where: {
+  //       TaskId: taskId,
+  //     },
+  //   },
+  //   { transaction }
+  // );
 
-    await Task.destroy(
-      {
-        where: {
-          id: taskId,
-        },
+  await Task.destroy(
+    {
+      where: {
+        id: taskId,
       },
-      // { transaction }
-    );
+    }
+    // { transaction }
+  );
 
   //   transaction.commit();
   // } catch (error) {
