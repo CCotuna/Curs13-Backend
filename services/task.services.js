@@ -2,6 +2,7 @@ import { sequelize } from "../db.js";
 
 import { Description } from "../models/description.model.js";
 import { Task } from "../models/task.model.js";
+import { Manager } from "../models/manager.model.js";
 
 export async function getAllTasks() {
   return await Task.findAll({
@@ -14,16 +15,24 @@ export async function createTask(
   favorite,
   description,
   author,
-  ClientId
+  ClientId,
+  assignedManagers
 ) {
   // LOGICA => SERVICE + REPOSITORTY
   const transaction = await sequelize.transaction();
 
   try {
     const taskRow = await Task.create(
-      { name, favorite, ClientId },
+      { name, favorite, ClientId},
       { transaction }
     );
+
+    // for (const managerId of assignedManagers) {
+    //   const manager = await Manager.findByPk(managerId, { transaction })
+    //   if (manager) 
+    //     await manager.addManagerTask(taskRow, { transaction });
+    // };
+    
     await Description.create(
       {
         text: description,
@@ -37,6 +46,7 @@ export async function createTask(
 
     return taskRow.dataValues.id;
   } catch (error) {
+    console.log("error", error)
     await transaction.rollback();
   }
 
