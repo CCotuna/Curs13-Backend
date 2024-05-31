@@ -35,6 +35,9 @@ app.use("/tasks", tasksRoutes);
 import clientRoutes from "./routes/client.routes.js";
 app.use("/client", clientRoutes);
 
+import managerRoutes from "./routes/manager.routes.js";
+app.use("/manager", managerRoutes);
+
 // app.use(
 //   "/product",
 //   router.delete("/red-pen", function (req, res) {

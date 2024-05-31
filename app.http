@@ -5,6 +5,17 @@ GET {{mainUrl}}/tasks
 ###
 #
 GET {{mainUrl}}/tasks
+
+###
+#
+POST http://localhost:3000/manager
+Content-Type: application/json
+
+{
+    "name": "Test Manager",
+    "skills": [ "PHP", "JS", "Node", "Vue" ]
+}
+
 ###
 #
 POST http://localhost:3000/client
@@ -26,7 +37,8 @@ Content-Type: application/json
     "favorite": true,
     "description": "Description of the job",
     "author": "Mario",
-    "ClientId": 1
+    "ClientId": 1,
+    "managers": [1, 2]
  }
 ###
 #

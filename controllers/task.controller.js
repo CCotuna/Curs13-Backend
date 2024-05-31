@@ -14,7 +14,7 @@ export async function getTasks(req, res) {
 
 export async function addNewTask(req, res) {
   // LUAREA DATELOR
-  const { name, favorite, description, author, ClientId } = req.body;
+  const { name, favorite, description, author, ClientId, managers } = req.body;
 
   // VERIFICARI
   if (!name) {
@@ -31,7 +31,8 @@ export async function addNewTask(req, res) {
     favorite,
     description,
     author,
-    ClientId
+    ClientId,
+    managers
   );
 
   // RASPUNS
